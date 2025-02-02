@@ -10,27 +10,37 @@
 <body class="bg-green-100">
 <!-- Navbar -->
 <nav class="bg-green-600 text-white shadow-md py-3">
-    <div class="container mx-auto flex justify-center space-x-8">
-        <a th:href="@{/}" class="hover:text-green-200 font-medium">Inicio</a>
-        <a th:href="@{/servicios}" class="hover:text-green-200 font-medium">Servicios</a>
-        <a th:href="@{/contactos}" class="hover:text-green-200 font-medium">Contáctanos</a>
+    <div class="container mx-auto flex justify-between items-center">
+        <a th:href="@{/}" class="text-xl font-semibold hover:text-green-200 ml-4">
+            Inicio
+        </a>
+        <div class="flex space-x-6 mr-4">
+            <a th:href="@{/servicios}" class="hover:text-green-200 font-medium text-lg">Servicios</a>
+            <a th:href="@{/propiedades}" class="hover:text-green-200 font-medium text-lg">Propiedades</a>
+            <a th:href="@{/comprar}" class="hover:text-green-200 font-medium text-lg">Comprar</a>
+            <a th:href="@{/vender}" class="hover:text-green-200 font-medium text-lg">Vender</a>
+            <a th:href="@{/contactos}" class="hover:text-green-200 font-medium text-lg">Contacto</a>
+        </div>
     </div>
 </nav>
-
-<!-- Title -->
-<div class="text-center mt-6 mb-10">
-    <h1 class="text-3xl font-bold text-gray-800">Formulario de Contacto</h1>
-</div>
-
 <!-- Formulario -->
 <main class="container mx-auto p-4">
-    <div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="bg-green-100 p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
+        <div class="text-center mt-6 mb-10">
+            <h1 class="text-3xl font-bold text-gray-800">Formulario de Contacto</h1>
+        </div>
+        <!-- Información adicional -->
+        <p class="text-center text-gray-600 mb-8">
+            ¿Tienes alguna duda o consulta? Llena el formulario y nos pondremos en contacto contigo para agendar una cita lo antes posible.
+        </p>
+
+        <!-- Formulario -->
         <form th:action="@{/enviarFormulario}" method="post" th:object="${formularioContacto}" class="space-y-6">
             <!-- Nombre -->
             <div>
                 <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" th:field="*{nombre}"
-                       class="mt-1 block w-full p-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                       class="mt-1 block w-full p-3 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
                        placeholder="Ingrese su nombre">
                 <p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="text-red-500 text-sm mt-1"></p>
             </div>
@@ -39,7 +49,7 @@
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" th:field="*{email}"
-                       class="mt-1 block w-full p-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                       class="mt-1 block w-full p-3 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
                        placeholder="Ingrese su correo electrónico">
                 <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-500 text-sm mt-1"></p>
             </div>
@@ -48,7 +58,7 @@
             <div>
                 <label for="numero" class="block text-sm font-medium text-gray-700">Número de Teléfono:</label>
                 <input type="text" id="numero" name="numero" th:field="*{numero}"
-                       class="mt-1 block w-full p-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                       class="mt-1 block w-full p-3 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
                        placeholder="Ingrese su número de teléfono">
                 <p th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}" class="text-red-500 text-sm mt-1"></p>
             </div>
@@ -57,7 +67,7 @@
             <div>
                 <label for="mensaje" class="block text-sm font-medium text-gray-700">Mensaje:</label>
                 <textarea id="mensaje" name="mensaje" th:field="*{mensaje}" rows="4"
-                          class="mt-1 block w-full p-2 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                          class="mt-1 block w-full p-3 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
                           placeholder="Escriba su mensaje"></textarea>
                 <p th:if="${#fields.hasErrors('mensaje')}" th:errors="*{mensaje}" class="text-red-500 text-sm mt-1"></p>
             </div>
@@ -65,13 +75,14 @@
             <!-- Botón de Enviar -->
             <div class="text-center">
                 <button
-                        class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-6 rounded-lg shadow-lg focus:ring-4 focus:ring-green-300">
+                        class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg focus:ring-4 focus:ring-green-300">
                     Enviar
                 </button>
             </div>
         </form>
     </div>
 </main>
+
 
 <!-- Footer -->
 <footer class="bg-gray-800 text-white text-center py-4 mt-10">

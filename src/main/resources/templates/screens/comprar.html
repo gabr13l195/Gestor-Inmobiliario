@@ -1,10 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Inmobiliario - Comprar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css">
 </head>
-<body>
+<body class="bg-green-100">
+<!-- Navbar -->
+<nav class="bg-green-600 text-white shadow-md py-3">
+    <div class="container mx-auto flex justify-between items-center">
+        <a th:href="@{/}" class="text-xl font-semibold hover:text-green-200 ml-4">
+            Inicio
+        </a>
+        <div class="flex space-x-6 mr-4">
+            <a th:href="@{/servicios}" class="hover:text-green-200 font-medium text-lg">Servicios</a>
+            <a th:href="@{/propiedades}" class="hover:text-green-200 font-medium text-lg">Propiedades</a>
+            <a th:href="@{/comprar}" class="hover:text-green-200 font-medium text-lg">Comprar</a>
+            <a th:href="@{/vender}" class="hover:text-green-200 font-medium text-lg">Vender</a>
+            <a th:href="@{/contactos}" class="hover:text-green-200 font-medium text-lg">Contacto</a>
+        </div>
+    </div>
+</nav>
 
+<!-- Formulario de Comprar -->
+<main class="container mx-auto p-4">
+    <div class="bg-green-100 p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">Formulario de Compra</h1>
+        <p class="text-center text-gray-600 mb-8">Completa los campos para que podamos ayudarte a encontrar la propiedad ideal.</p>
+        <form th:action="@{/enviarFormularioComprar}" method="post" th:object="${formularioComprar}" class="space-y-6">
+            <!-- Nombre -->
+            <div>
+                <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" th:field="*{nombre}"
+                       class="mt-1 block w-full p-3 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                       placeholder="Ingrese su nombre">
+                <p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="text-red-500 text-sm mt-1"></p>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" th:field="*{email}"
+                       class="mt-1 block w-full p-3 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                       placeholder="Ingrese su correo electrónico">
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-500 text-sm mt-1"></p>
+            </div>
+
+            <!-- Teléfono -->
+            <div>
+                <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" th:field="*{telefono}"
+                       class="mt-1 block w-full p-3 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                       placeholder="Ingrese su teléfono">
+                <p th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="text-red-500 text-sm mt-1"></p>
+            </div>
+
+            <!-- Interés -->
+            <div>
+                <label for="interes" class="block text-sm font-medium text-gray-700">Interés:</label>
+                <input type="text" id="interes" name="interes" th:field="*{interes}"
+                       class="mt-1 block w-full p-3 border rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                       placeholder="Compra, Renta, etc.">
+                <p th:if="${#fields.hasErrors('interes')}" th:errors="*{interes}" class="text-red-500 text-sm mt-1"></p>
+            </div>
+
+            <!-- Botón -->
+            <div class="text-center">
+                <button
+                        class="bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg focus:ring-4 focus:ring-green-300">
+                    Enviar
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
 </body>
 </html>
+

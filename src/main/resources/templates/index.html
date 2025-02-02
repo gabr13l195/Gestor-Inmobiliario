@@ -11,15 +11,13 @@
 <!-- Navbar -->
 <nav class="bg-green-600 text-white shadow-md py-3">
     <div class="container mx-auto flex justify-between items-center">
-        <!-- Enlace Inicio (Izquierda) -->
         <a th:href="@{/}" class="text-xl font-semibold hover:text-green-200 ml-4">
             Inicio
         </a>
-        <!-- Enlaces (Derecha) -->
         <div class="flex space-x-6 mr-4">
             <a th:href="@{/servicios}" class="hover:text-green-200 font-medium text-lg">Servicios</a>
             <a th:href="@{/propiedades}" class="hover:text-green-200 font-medium text-lg">Propiedades</a>
-            <a th:href="@{/adquirir}" class="hover:text-green-200 font-medium text-lg">Comprar</a>
+            <a th:href="@{/comprar}" class="hover:text-green-200 font-medium text-lg">Comprar</a>
             <a th:href="@{/vender}" class="hover:text-green-200 font-medium text-lg">Vender</a>
             <a th:href="@{/contactos}" class="hover:text-green-200 font-medium text-lg">Contacto</a>
         </div>
@@ -69,12 +67,12 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Adquirir Propiedad -->
                 <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-                    <a th:href="@{/adquirir}" class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2">
-                        Adquirir
+                    <a th:href="@{/comprar}" class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2">
+                        Comprar
                     </a>
                     <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">¿Quieres adquirir una propiedad?</h2>
                     <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">Completa el formulario para que te contactemos y te ayudemos a encontrar la propiedad ideal.</p>
-                    <a th:href="@{/adquirir}" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Más información
+                    <a th:href="@{/comprar}" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Más información
                         <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
