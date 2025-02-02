@@ -1,10 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Servicios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Inmobiliario - Servicios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css">
 </head>
-<body>
+<body class="bg-green-100">
+<!-- Navbar -->
+<nav class="bg-green-600 text-white shadow-md py-3">
+    <div class="container mx-auto flex justify-between items-center">
+        <a th:href="@{/}" class="text-xl font-semibold hover:text-green-200 ml-4">
+            Inicio
+        </a>
+        <div class="flex space-x-6 mr-4">
+            <a th:href="@{/servicios}" class="hover:text-green-200 font-medium text-lg">Servicios</a>
+            <a th:href="@{/propiedades}" class="hover:text-green-200 font-medium text-lg">Propiedades</a>
+            <a th:href="@{/comprar}" class="hover:text-green-200 font-medium text-lg">Comprar</a>
+            <a th:href="@{/vender}" class="hover:text-green-200 font-medium text-lg">Vender</a>
+            <a th:href="@{/contactos}" class="hover:text-green-200 font-medium text-lg">Contacto</a>
+        </div>
+    </div>
+</nav>
 
+<!-- Section principal -->
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Servicios que ofrecemos</h1>
+        <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
+            En Gestor Inmobiliario, ofrecemos soluciones completas para comprar y vender propiedades. Nos enfocamos en garantizar una experiencia fluida, eficiente y personalizada para nuestros clientes.
+        </p>
+    </div>
+</section>
+
+<!-- Carrusel de Servicios -->
+<section class="bg-green-100 py-10">
+    <div class="container mx-auto">
+        <div class="max-w-xl mx-auto"> <!-- Ajuste del ancho máximo y centrado -->
+            <div id="carousel" class="relative w-full" data-carousel="static">
+                <!-- Carrusel Wrapper -->
+                <div class="relative overflow-hidden rounded-lg h-80"> <!-- Cambiar la altura del carrusel -->
+                    <!-- Slide 1 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img th:src="@{/imagenes/propiedad_ideal.jpg}" alt="Comprar Propiedades"
+                             class="absolute inset-0 w-full h-full object-cover rounded-lg">
+                        <div class="absolute bottom-0 left-0 p-5 bg-black bg-opacity-50 text-white">
+                            <h2 class="text-xl font-bold">Encuentra tu Propiedad Ideal</h2>
+                            <p class="text-sm">Explora nuestro catálogo de propiedades y encuentra el hogar perfecto para ti.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img th:src="@{/imagenes/venta_casa.jpg}" alt="Vender Propiedades"
+                             class="absolute inset-0 w-full h-full object-cover rounded-lg">
+                        <div class="absolute bottom-0 left-0 p-5 bg-black bg-opacity-50 text-white">
+                            <h2 class="text-xl font-bold">Vende tu Propiedad Rápidamente</h2>
+                            <p class="text-sm">Publica tu propiedad con nosotros y conecta con compradores interesados.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img th:src="@{/imagenes/asesoramiento.jpg}" alt="Asesoramiento Profesional"
+                             class="absolute inset-0 w-full h-full object-cover rounded-lg">
+                        <div class="absolute bottom-0 left-0 p-5 bg-black bg-opacity-50 text-white">
+                            <h2 class="text-xl font-bold">Asesoramiento Personalizado</h2>
+                            <p class="text-sm">Recibe la mejor orientación de nuestro equipo experto para cerrar acuerdos exitosos.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Controles -->
+                <button type="button"
+                        class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                        data-carousel-prev>
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black bg-opacity-30 group-hover:bg-opacity-50">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </span>
+                </button>
+                <button type="button"
+                        class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                        data-carousel-next>
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-black bg-opacity-30 group-hover:bg-opacity-50">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white text-center py-4 mt-10">
+    <p>© 2025 Gestor Inmobiliario. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 </body>
 </html>
