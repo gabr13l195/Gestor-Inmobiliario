@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Inmobiliario - Inicio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css">
+</head>
+<body class="bg-green-100">
+<!-- Navbar -->
+<nav class="bg-green-600 text-white shadow-md py-3">
+    <div class="container mx-auto flex justify-center space-x-8">
+        <a th:href="@{/}" class="hover:text-green-200 font-medium">Inicio</a>
+        <a th:href="@{/screens/servicios}" class="hover:text-green-200 font-medium">Servicios</a>
+        <a th:href="@{/screens/contactos}" class="hover:text-green-200 font-medium">Contacto</a>
+    </div>
+</nav>
+
+<!-- Title -->
+<div class="text-center mt-6 mb-10">
+    <h1 class="text-3xl font-bold text-gray-800">Gestor Inmobiliario</h1>
+</div>
+
+<!-- Main Content -->
+<main class="container mx-auto p-4">
+    <!-- Central Section -->
+    <section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply rounded-lg shadow-lg">
+        <div class="px-4 mx-auto max-w-screen-md text-center py-24 lg:py-32">
+            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Gestión Eficiente de Propiedades</h1>
+            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-24">
+                Optimiza tus procesos inmobiliarios con nuestra plataforma. Gestiona propiedades, propietarios y clientes de forma centralizada y eficiente.
+            </p>
+            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+                <a th:href="@{/screens/servicios}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300">
+                    Explorar Servicios
+                    <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+                <a th:href="@{/screens/contactos}" class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
+                    Contáctanos
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white text-center py-4 mt-10">
+    <p>© 2025 Gestor Inmobiliario. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</body>
+</html>
+
+
