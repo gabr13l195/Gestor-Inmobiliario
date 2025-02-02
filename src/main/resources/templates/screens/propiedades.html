@@ -1,10 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Inmobiliario - Propiedades</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css">
 </head>
-<body>
+<body class="bg-green-100">
+<!-- Navbar -->
+<nav class="bg-green-600 text-white shadow-md py-3">
+    <div class="container mx-auto flex justify-between items-center">
+        <a th:href="@{/}" class="text-xl font-semibold hover:text-green-200 ml-4">
+            Inicio
+        </a>
+        <div class="flex space-x-6 mr-4">
+            <a th:href="@{/servicios}" class="hover:text-green-200 font-medium text-lg">Servicios</a>
+            <a th:href="@{/propiedades}" class="hover:text-green-200 font-medium text-lg">Propiedades</a>
+            <a th:href="@{/comprar}" class="hover:text-green-200 font-medium text-lg">Comprar</a>
+            <a th:href="@{/vender}" class="hover:text-green-200 font-medium text-lg">Vender</a>
+            <a th:href="@{/contactos}" class="hover:text-green-200 font-medium text-lg">Contacto</a>
+        </div>
+    </div>
+</nav>
 
+<!-- Section principal -->
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Propiedades Disponibles</h1>
+        <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
+            Explora nuestro catálogo de propiedades disponibles. Encuentra la casa, el departamento o el terreno ideal para ti. Tenemos opciones para todas tus necesidades.
+        </p>
+    </div>
+</section>
+
+<!-- Propiedades en Grid -->
+<section class="py-10">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Propiedad 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img th:src="@{/imagenes/casa1.jpg}" alt="Propiedad Ideal" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-bold mb-2">Casa en el Centro</h2>
+                <p class="text-gray-700 text-sm">Hermosa casa de 3 habitaciones y 2 baños ubicada en el corazón de la ciudad. Ideal para familias.</p>
+                <div class="mt-4 flex justify-between items-center">
+                    <span class="text-green-600 font-bold">$120,000</span>
+                    <a href="#" class="text-blue-600 hover:underline text-sm">Ver más</a>
+                </div>
+            </div>
+        </div>
+        <!-- Propiedad 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img th:src="@{/imagenes/casa2.jpg}" alt="Casa a la Venta" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-bold mb-2">Departamento Moderno</h2>
+                <p class="text-gray-700 text-sm">Departamento de lujo con vista panorámica, incluye piscina y gimnasio. Excelente ubicación.</p>
+                <div class="mt-4 flex justify-between items-center">
+                    <span class="text-green-600 font-bold">$200,000</span>
+                    <a href="#" class="text-blue-600 hover:underline text-sm">Ver más</a>
+                </div>
+            </div>
+        </div>
+        <!-- Propiedad 3 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <img th:src="@{/imagenes/casa3.jpg}" alt="Asesoramiento" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-bold mb-2">Terreno Amplio</h2>
+                <p class="text-gray-700 text-sm">Terreno de 500m² ubicado en una zona tranquila, perfecto para construir la casa de tus sueños.</p>
+                <div class="mt-4 flex justify-between items-center">
+                    <span class="text-green-600 font-bold">$50,000</span>
+                    <a href="#" class="text-blue-600 hover:underline text-sm">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white text-center py-4 mt-10">
+    <p>© 2025 Gestor Inmobiliario. Todos los derechos reservados.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class FormularioContacto {
     @Size(min = 1, max = 10, message = "El número de teléfono debe tener entre 1 y 10 dígitos.")
     private String numero;
 
-    // Getters y Setters (opcional debido a @Data de Lombok)
+
     public String getNombre() {
         return nombre;
     }
