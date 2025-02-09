@@ -14,6 +14,12 @@ public class PropiedadControlador {
     @Autowired
     private PropiedadServicio propiedadServicio;
 
+    @GetMapping("/ventas")
+    public String mostrarVentas(Model modelo) {
+        modelo.addAttribute("propiedades", propiedadServicio.listarTodas());
+        return "screens/ventas";
+    }
+
     // Listar todas las propiedades
     @GetMapping
     public String listarPropiedades(Model modelo) {

@@ -16,7 +16,7 @@
         </a>
         <div class="flex space-x-6 mr-4">
             <a th:href="@{/propiedades}" class="hover:text-green-200 font-medium text-lg">Propiedades</a>
-            <a th:href="@{/ventas}" class="hover:text-green-200 font-medium text-lg">Ventas</a>
+            <a th:href="@{/propiedades/ventas}" class="hover:text-green-200 font-medium text-lg">Ventas</a>
             <a th:href="@{/reservas}" class="hover:text-green-200 font-medium text-lg">Reservas</a>
             <a th:href="@{/propietarios}" class="hover:text-green-200 font-medium text-lg">Propietarios</a>
         </div>
@@ -28,7 +28,7 @@
     <div class="container mx-auto mt-10">
         <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Gestión de Propietarios</h2>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto mb-6">
             <table class="w-full text-sm text-left text-gray-500 border border-gray-300 rounded-lg shadow-lg">
                 <thead class="text-xs text-gray-700 uppercase bg-green-100">
                 <tr>
@@ -55,8 +55,16 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Botón para añadir una nueva propiedad -->
+        <div class="text-center">
+            <a th:href="@{/propietarios/nueva}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                Añadir Nueva Propiedad
+            </a>
+        </div>
     </div>
 </main>
+
 
 <!-- Footer -->
 <footer class="bg-gray-800 text-white text-center py-4 mt-10">
