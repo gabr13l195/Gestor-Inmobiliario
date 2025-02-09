@@ -1,27 +1,32 @@
 package com.springbetancour.Entidad;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import jakarta.persistence.*;
+import java.util.List;
 
-@Data
+@Entity
 public class Cliente {
 
-    @NotBlank(message = "El nombre es obligatorio.")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nombre;
-
-    @Email(message = "Debe proporcionar un correo electrónico válido.")
     private String email;
-
-    @NotBlank(message = "El teléfono es obligatorio.")
     private String telefono;
+    private String interes;
 
-    @NotBlank(message = "El interés es obligatorio.")
-    private String interes; // Compra, Renta, etc.
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Reserva> reservas;
 
+    // Getters y Setters
+    public Long getId() {
+        return id;
+    }
 
-    //NO ME FUNCIONA DATA
-    //SE AÑADEN GETTER AND SETTERS
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -53,5 +58,12 @@ public class Cliente {
     public void setInteres(String interes) {
         this.interes = interes;
     }
-}
 
+    public List<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
+    }
+}

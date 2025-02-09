@@ -1,79 +1,66 @@
 package com.springbetancour.Entidad;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import com.springbetancour.Entidad.Propiedad;
+import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
+@Entity
 public class Propietario {
 
-    @NotBlank(message = "El tipo de propiedad es obligatorio.")
-    private String tipo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @NotNull(message = "El precio es obligatorio.")
-    private Double precio;
+    private String nombre;
+    private String email;
+    private String telefono;
 
-    @NotBlank(message = "La ubicación es obligatoria.")
-    private String ubicacion;
+    @OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL)
+    private List<Propiedad> propiedades;
 
-    @NotNull(message = "El tamaño es obligatorio.")
-    private Double tamaño;
-
-    @NotBlank(message = "El estado de la propiedad es obligatorio.")
-    private String estado;
-
-    @NotBlank(message = "El nombre del propietario es obligatorio.")
-    private String propietario;
-
-
-    //NO ME FUNCIONA DATA
-    //SE AÑADEN GETTER AND SETTERS
-    public String getTipo() {
-        return tipo;
+    // Getters y Setters
+    public Long getId() {
+        return id;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Double getPrecio() {
-        return precio;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPrecio(Double precio) {
-        this.precio = precio;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Double getTamaño() {
-        return tamaño;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setTamaño(Double tamaño) {
-        this.tamaño = tamaño;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getEstado() {
-        return estado;
+    public List<Propiedad> getPropiedades() {
+        return propiedades;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getPropietario() {
-        return propietario;
-    }
-
-    public void setPropietario(String propietario) {
-        this.propietario = propietario;
+    public void setPropiedades(List<Propiedad> propiedades) {
+        this.propiedades = propiedades;
     }
 }
+
 
