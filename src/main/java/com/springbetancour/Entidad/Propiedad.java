@@ -10,9 +10,9 @@ public class Propiedad {
     private Long id;
 
     private String tipo;
-    private double precio;
     private String ubicacion;
-    private double tamaño;
+    private Double precio;
+    private Double tamano;
     private String estado;
 
     @ManyToOne
@@ -52,14 +52,6 @@ public class Propiedad {
         this.ubicacion = ubicacion;
     }
 
-    public double getTamaño() {
-        return tamaño;
-    }
-
-    public void setTamaño(double tamaño) {
-        this.tamaño = tamaño;
-    }
-
     public String getEstado() {
         return estado;
     }
@@ -74,6 +66,18 @@ public class Propiedad {
 
     public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public Double getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(Double tamano) {
+        this.tamano = tamano;
     }
 }
 
