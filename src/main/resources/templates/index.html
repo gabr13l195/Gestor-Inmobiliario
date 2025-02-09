@@ -31,7 +31,7 @@
         <div class="px-4 mx-auto max-w-screen-md text-center py-24 lg:py-32">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Gestión Eficiente de Propiedades</h1>
             <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-24">
-                Optimiza tus procesos inmobiliarios con nuestra plataforma. Gestiona propiedades, propietarios y clientes de forma centralizada y eficiente.
+                Administra inmuebles, propietarios y clientes de manera sencilla y eficiente con nuestra plataforma.
             </p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                 <a th:href="@{/servicios}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300">
@@ -54,8 +54,8 @@
                     </svg>
                     Propiedades
                 </a>
-                <h1 class="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-2">Ver todas las propiedades en venta</h1>
-                <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-6">Explora nuestro catálogo de propiedades disponibles. Encuentra la casa o local que mejor se ajuste a tus necesidades.</p>
+                <h1 class="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-2">Catálogo de Propiedades</h1>
+                <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-6">Explora las propiedades disponibles y encuentra la adecuada para ti.</p>
                 <a th:href="@{/propiedades}" class="inline-flex justify-center items-center py-2.5 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                     Ver Propiedades
                     <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -64,13 +64,13 @@
                 </a>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Adquirir Propiedad -->
+                <!-- Comprar Propiedad -->
                 <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
                     <a th:href="@{/comprar}" class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2">
                         Comprar
                     </a>
-                    <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">¿Quieres adquirir una propiedad?</h2>
-                    <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">Completa el formulario para que te contactemos y te ayudemos a encontrar la propiedad ideal.</p>
+                    <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">¿Quieres comprar una propiedad?</h2>
+                    <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">Encuentra propiedades a tu medida y haz el mejor trato con nosotros.</p>
                     <a th:href="@{/comprar}" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Más información
                         <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -80,12 +80,12 @@
 
                 <!-- Vender Propiedad -->
                 <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-                    <a th:href="@{vender}" class="bg-purple-100 text-purple-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-purple-400 mb-2">
+                    <a th:href="@{/vender}" class="bg-purple-100 text-purple-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-purple-400 mb-2">
                         Vender
                     </a>
                     <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">¿Quieres vender una propiedad?</h2>
-                    <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">Completa el formulario para registrar tu propiedad en nuestra plataforma y encontrar interesados.</p>
-                    <a th:href="@{vender}" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Más información
+                    <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">Publica tu propiedad y conecta con clientes interesados fácilmente.</p>
+                    <a th:href="@{/vender}" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Más información
                         <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
@@ -96,7 +96,6 @@
     </section>
 </main>
 
-
 <!-- Footer -->
 <footer class="bg-gray-800 text-white text-center py-4 mt-10">
     <p>© 2025 Gestor Inmobiliario. Todos los derechos reservados.</p>
@@ -105,5 +104,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 </body>
 </html>
+
 
 

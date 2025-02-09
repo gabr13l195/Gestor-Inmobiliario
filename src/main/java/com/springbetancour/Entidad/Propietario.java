@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class FormularioVender {
+public class Propietario {
 
     @NotBlank(message = "El tipo de propiedad es obligatorio.")
     private String tipo;
@@ -25,6 +25,9 @@ public class FormularioVender {
     @NotBlank(message = "El nombre del propietario es obligatorio.")
     private String propietario;
 
+
+    //NO ME FUNCIONA DATA
+    //SE AÑADEN GETTER AND SETTERS
     public String getTipo() {
         return tipo;
     }

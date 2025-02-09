@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class FormularioComprar {
+public class Cliente {
 
     @NotBlank(message = "El nombre es obligatorio.")
     private String nombre;
@@ -19,6 +19,9 @@ public class FormularioComprar {
     @NotBlank(message = "El interés es obligatorio.")
     private String interes; // Compra, Renta, etc.
 
+
+    //NO ME FUNCIONA DATA
+    //SE AÑADEN GETTER AND SETTERS
     public String getNombre() {
         return nombre;
     }
