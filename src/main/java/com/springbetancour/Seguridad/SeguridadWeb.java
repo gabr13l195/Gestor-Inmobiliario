@@ -2,6 +2,7 @@ package com.springbetancour.Seguridad;
 
 import com.springbetancour.Entidad.Usuario;
 import com.springbetancour.Repositorio.UsuarioRepositorio;
+import com.springbetancour.Servicios.UsuarioServicio;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -45,10 +48,19 @@ public class SeguridadWeb {
                     .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
             return User.withUsername(usuario.getEmail()) // Usa el email como username
-                    .password(usuario.getPassword())
+                    .password(usuario.getPassword()) // Usa la contraseña encriptada guardada en la BD
+                    .passwordEncoder(passwordEncoder()::encode) // Asegura que se use BCrypt
                     .roles("USER")
                     .build();
         };
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(); // Define BCrypt como codificador por defecto
+    }
+
+
+
 
 }
