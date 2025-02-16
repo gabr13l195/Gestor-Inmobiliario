@@ -20,6 +20,7 @@ public class Propiedad {
     private Propietario propietario;
 
     // Getters y Setters
+
     public Long getId() {
         return id;
     }
@@ -36,20 +37,28 @@ public class Propiedad {
         this.tipo = tipo;
     }
 
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
     public String getUbicacion() {
         return ubicacion;
     }
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    public Double getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(Double tamano) {
+        this.tamano = tamano;
     }
 
     public String getEstado() {
@@ -66,18 +75,6 @@ public class Propiedad {
 
     public void setPropietario(Propietario propietario) {
         this.propietario = propietario;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
-    public Double getTamano() {
-        return tamano;
-    }
-
-    public void setTamano(Double tamano) {
-        this.tamano = tamano;
     }
 }
 

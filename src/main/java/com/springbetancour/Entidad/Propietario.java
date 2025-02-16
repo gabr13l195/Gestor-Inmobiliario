@@ -22,6 +22,7 @@ public class Propietario {
     private List<Propiedad> propiedades;
 
     // Getters y Setters
+
     public Long getId() {
         return id;
     }
