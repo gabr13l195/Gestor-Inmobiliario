@@ -25,11 +25,12 @@ public class SeguridadWeb {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/index", "/register", "/css/**", "/js/**").permitAll()
+                        .requestMatchers("/dashboard").authenticated()
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
-                        .loginPage("/login") // Página de login
-                        .defaultSuccessUrl("/dashboard", true) // Redirige al dashboard después del login
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/dashboard", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -48,15 +49,15 @@ public class SeguridadWeb {
                     .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
             return User.withUsername(usuario.getEmail())
-                    .password(usuario.getPassword()) // Usa la contraseña encriptada guardada en la BD
+                    .password(usuario.getPassword())
                     .roles("USER")
-                    .build(); // No vuelvas a encriptar aquí
+                    .build();
         };
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Define BCrypt como codificador por defecto
+        return new BCryptPasswordEncoder();
     }
 
 

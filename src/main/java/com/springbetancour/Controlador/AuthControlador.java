@@ -37,6 +37,11 @@ public class AuthControlador {
     public String mostrarLogin() {
         return "login"; // Debe coincidir con el nombre del archivo en templates/login.html
     }
+
+    @GetMapping("/dashboard")
+    public String mostrarDashboard() {
+        return "dashboard"; // Retorna el template "dashboard.html"
+    }
 }
 
 
