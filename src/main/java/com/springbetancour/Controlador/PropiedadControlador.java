@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/propiedades")
 public class PropiedadControlador {
@@ -21,19 +23,22 @@ public class PropiedadControlador {
         return "screens/propiedades";
     }
 
-    // Mostrar la página de ventas
     @GetMapping("/ventas")
     public String mostrarVentas(Model modelo) {
-//        modelo.addAttribute("propiedades", propiedadServicio.listarTodas());
+        List<Propiedad> propiedades = propiedadServicio.listarTodas();
+        modelo.addAttribute("propiedades", propiedades); // Enviar la lista de propiedades a ventas.html
         return "screens/ventas";
     }
 
+
+    // Mostrar el formulario para crear una nueva propiedad
     // Mostrar el formulario para crear una nueva propiedad
     @GetMapping("/nuevaPropiedad")
     public String mostrarFormularioNuevaPropiedad(Model modelo) {
-        modelo.addAttribute("propiedad", new Propiedad()); // Crear un objeto vacío para el formulario
-        return "screens/nuevaPropiedad"; // Renderizar la vista nuevaPropiedad.html
+        modelo.addAttribute("propiedad", new Propiedad()); // Asegura que el formulario reciba un objeto vacío
+        return "screens/nuevaPropiedad";
     }
+
 
     // Guardar una nueva propiedad desde el formulario
     @PostMapping("/guardar")

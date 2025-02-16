@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Ventas</title>
+  <title>Propiedades en Venta - Gestor Inmobiliario</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css">
 </head>
 <body class="bg-green-100">
+
 <!-- Navbar -->
 <nav class="bg-green-600 text-white shadow-md py-3">
   <div class="container mx-auto flex justify-between items-center">
-    <a th:href="@{/}" class="text-xl font-semibold hover:text-green-200 ml-4">
-      Inicio
-    </a>
+    <a th:href="@{/}" class="text-xl font-semibold hover:text-green-200 ml-4">Inicio</a>
     <div class="flex space-x-6 mr-4">
       <a th:href="@{/propiedades}" class="hover:text-green-200 font-medium text-lg">Propiedades</a>
       <a th:href="@{/propiedades/ventas}" class="hover:text-green-200 font-medium text-lg">Ventas</a>
@@ -23,53 +22,54 @@
   </div>
 </nav>
 
-<!-- Main Content -->
-<main class="container mx-auto p-4">
-  <div class="container mx-auto mt-10">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Gestión de Ventas</h2>
+<!-- Contenido -->
+<section class="container mx-auto my-10">
+  <h1 class="text-3xl font-bold text-gray-900 text-center">Propiedades en Venta</h1>
 
-    <div class="overflow-x-auto">
-      <form th:action="@{/ventas}" method="get" class="flex mb-4 justify-center">
-        <input type="text" name="buscarPropiedad" placeholder="Buscar propiedades" th:value="${buscarPropiedad}"
-               class="px-4 py-2 border rounded-lg focus:ring focus:ring-green-200">
-        <button class="ml-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition" type="submit">
-          Buscar
-        </button>
-      </form>
-      <table class="w-full text-sm text-left text-gray-500 border border-gray-300 rounded-lg shadow-lg">
-        <thead class="text-xs text-gray-700 uppercase bg-green-100">
-        <tr>
-          <th class="px-6 py-3 border-b">ID</th>
-          <th class="px-6 py-3 border-b">Tipo</th>
-          <th class="px-6 py-3 border-b">Ubicación</th>
-          <th class="px-6 py-3 border-b">Precio</th>
-          <th class="px-6 py-3 border-b">Propietario</th>
-          <th class="px-6 py-3 border-b text-center">Opciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="propiedad : ${propiedades}" class="bg-white border-b hover:bg-gray-100">
-          <td class="px-6 py-4 font-medium text-gray-900" th:text="${propiedad.id}"></td>
-          <td class="px-6 py-4" th:text="${propiedad.tipo}"></td>
-          <td class="px-6 py-4" th:text="${propiedad.ubicacion}"></td>
-          <td class="px-6 py-4" th:text="${propiedad.precio}"></td>
-          <td class="px-6 py-4" th:text="${propiedad.propietario.nombre}"></td>
-          <td class="px-6 py-4 flex justify-center space-x-2">
-            <a th:href="@{'/ventas/editar/' + ${propiedad.id}}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Actualizar</a>
-            <a th:href="@{'/ventas/eliminar/' + ${propiedad.id}}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar</a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+  <!-- Mensaje si no hay propiedades -->
+  <p th:if="${propiedades == null or propiedades.isEmpty()}" class="text-center text-gray-600 mt-4">
+    No hay propiedades disponibles en este momento.
+  </p>
+
+  <!-- Tabla de Propiedades -->
+  <div class="overflow-x-auto mt-6">
+    <table class="min-w-full bg-white shadow-md rounded-lg">
+      <thead class="bg-green-600 text-white">
+      <tr>
+        <th class="py-2 px-4">Tipo</th>
+        <th class="py-2 px-4">Ubicación</th>
+        <th class="py-2 px-4">Tamaño (m²)</th>
+        <th class="py-2 px-4">Precio ($)</th>
+        <th class="py-2 px-4">Estado</th>
+        <th class="py-2 px-4">Opciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="propiedad : ${propiedades}" class="border-b">
+        <td class="py-2 px-4 text-center" th:text="${propiedad.tipo}"></td>
+        <td class="py-2 px-4 text-center" th:text="${propiedad.ubicacion}"></td>
+        <td class="py-2 px-4 text-center" th:text="${propiedad.tamaño}"></td>
+        <td class="py-2 px-4 text-center text-green-600 font-bold" th:text="'$' + ${propiedad.precio}"></td>
+        <td class="py-2 px-4 text-center" th:text="${propiedad.estado}"></td>
+        <td class="py-2 px-4 text-center">
+          <a href="#" class="bg-blue-600 text-white py-1 px-3 rounded-lg hover:bg-blue-700 transition">
+            Comprar
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-</main>
+</section>
 
 <!-- Footer -->
 <footer class="bg-gray-800 text-white text-center py-4 mt-10">
   <p>© 2025 Gestor Inmobiliario. Todos los derechos reservados.</p>
 </footer>
 
+<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
 </body>
 </html>
+

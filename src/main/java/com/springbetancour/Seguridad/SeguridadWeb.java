@@ -25,22 +25,25 @@ public class SeguridadWeb {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/index", "/register", "/css/**", "/js/**").permitAll()
-                        .requestMatchers("/dashboard").authenticated()
+                        .requestMatchers("/dashboard", "/propiedades/**", "/reservas/**", "/propietarios/**").authenticated() // Proteger todas las páginas privadas
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/dashboard", true)
+                        .defaultSuccessUrl("/dashboard", true) // Redirigir al dashboard si el login es exitoso
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/login?logout") // Redirigir al login tras cerrar sesión
+                        .invalidateHttpSession(true) // Invalidar la sesión
+                        .deleteCookies("JSESSIONID") // Eliminar cookies de autenticación
                         .permitAll()
                 );
 
         return http.build();
     }
+
 
     @Bean
     public UserDetailsService userDetailsService(UsuarioRepositorio usuarioRepositorio) {

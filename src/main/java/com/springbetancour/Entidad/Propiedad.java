@@ -3,6 +3,7 @@ package com.springbetancour.Entidad;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "propiedad")
 public class Propiedad {
 
     @Id
@@ -12,14 +13,17 @@ public class Propiedad {
     private String tipo;
     private String ubicacion;
     private Double precio;
-    private Double tamano;
     private String estado;
 
+    @Column(nullable = false)
+    private Double tamaño = 0.0;
+
     @ManyToOne
-    @JoinColumn(name = "propietario_id")
+    @JoinColumn(name = "propietario_id", nullable = false)
     private Propietario propietario;
 
     // Getters y Setters
+
 
     public Long getId() {
         return id;
@@ -53,20 +57,20 @@ public class Propiedad {
         this.precio = precio;
     }
 
-    public Double getTamano() {
-        return tamano;
-    }
-
-    public void setTamano(Double tamano) {
-        this.tamano = tamano;
-    }
-
     public String getEstado() {
         return estado;
     }
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Double getTamaño() {
+        return tamaño;
+    }
+
+    public void setTamaño(Double tamaño) {
+        this.tamaño = tamaño;
     }
 
     public Propietario getPropietario() {

@@ -15,7 +15,8 @@ public class PropiedadServicio {
 
     // Listar todas las propiedades
     public List<Propiedad> listarTodas() {
-        return propiedadRepositorio.findAll();
+        List<Propiedad> propiedades = propiedadRepositorio.findAll();
+        return propiedades.isEmpty() ? null : propiedades;
     }
 
     // Guardar una propiedad
@@ -33,3 +34,4 @@ public class PropiedadServicio {
         propiedadRepositorio.deleteById(id);
     }
 }
+
