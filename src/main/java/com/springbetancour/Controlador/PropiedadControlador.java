@@ -23,35 +23,51 @@ public class PropiedadControlador {
         return "screens/propiedades";
     }
 
+    // Mostrar la página de ventas
     @GetMapping("/ventas")
     public String mostrarVentas(Model modelo) {
         List<Propiedad> propiedades = propiedadServicio.listarTodas();
-        modelo.addAttribute("propiedades", propiedades); // Enviar la lista de propiedades a ventas.html
+        modelo.addAttribute("propiedades", propiedades);
         return "screens/ventas";
     }
 
-
-    // Mostrar el formulario para crear una nueva propiedad
-    // Mostrar el formulario para crear una nueva propiedad
+    // Mostrar el formulario para agregar una nueva propiedad
     @GetMapping("/nuevaPropiedad")
     public String mostrarFormularioNuevaPropiedad(Model modelo) {
-        modelo.addAttribute("propiedad", new Propiedad()); // Asegura que el formulario reciba un objeto vacío
+        modelo.addAttribute("propiedad", new Propiedad()); // Crear un nuevo objeto vacío para el formulario
         return "screens/nuevaPropiedad";
     }
 
-
-    // Guardar una nueva propiedad desde el formulario
+    // Guardar una nueva propiedad
     @PostMapping("/guardar")
     public String guardarPropiedad(@ModelAttribute("propiedad") Propiedad propiedad) {
-        propiedadServicio.guardar(propiedad); // Guardar la nueva propiedad en la base de datos
-        return "redirect:/propiedades"; // Redirigir a la lista de propiedades
+        propiedadServicio.guardar(propiedad);
+        return "redirect:/propiedades";
     }
 
-    // Eliminar una propiedad por su ID
+    // Mostrar el formulario para editar una propiedad existente
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEditar(@PathVariable Long id, Model modelo) {
+        Propiedad propiedad = propiedadServicio.obtenerPorId(id);
+        if (propiedad != null) {
+            modelo.addAttribute("propiedad", propiedad);
+            return "screens/nuevaPropiedad"; // Usa el mismo formulario para editar
+        } else {
+            return "redirect:/propiedades";
+        }
+    }
+
+    // Guardar cambios de una propiedad editada
+    @PostMapping("/actualizar")
+    public String actualizarPropiedad(@ModelAttribute("propiedad") Propiedad propiedad) {
+        propiedadServicio.guardar(propiedad);
+        return "redirect:/propiedades";
+    }
+
+    // Eliminar una propiedad
     @GetMapping("/eliminar/{id}")
     public String eliminarPropiedad(@PathVariable Long id) {
-        propiedadServicio.eliminar(id); // Eliminar la propiedad por ID
-        return "redirect:/propiedades"; // Redirigir a la lista de propiedades
+        propiedadServicio.eliminar(id);
+        return "redirect:/propiedades";
     }
-
 }

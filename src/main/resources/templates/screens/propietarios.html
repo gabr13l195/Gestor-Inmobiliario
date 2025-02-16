@@ -3,73 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Propietarios</title>
+    <title>Mis Propiedades - Gestor Inmobiliario</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css">
 </head>
 <body class="bg-green-100">
+
 <!-- Navbar -->
 <nav class="bg-green-600 text-white shadow-md py-3">
     <div class="container mx-auto flex justify-between items-center">
-        <a th:href="@{/}" class="text-xl font-semibold hover:text-green-200 ml-4">
-            Inicio
-        </a>
+        <a th:href="@{/}" class="text-xl font-semibold hover:text-green-200 ml-4">Inicio</a>
         <div class="flex space-x-6 mr-4">
             <a th:href="@{/propiedades}" class="hover:text-green-200 font-medium text-lg">Propiedades</a>
             <a th:href="@{/propiedades/ventas}" class="hover:text-green-200 font-medium text-lg">Ventas</a>
             <a th:href="@{/reservas}" class="hover:text-green-200 font-medium text-lg">Reservas</a>
-            <a th:href="@{/propietarios}" class="hover:text-green-200 font-medium text-lg">Propietarios</a>
+            <a th:href="@{/propietarios}" class="hover:text-green-200 font-medium text-lg">Mis Propiedades</a>
         </div>
     </div>
 </nav>
 
-<!-- Main Content -->
-<main class="container mx-auto p-4">
-    <div class="container mx-auto mt-10">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Vende tu propiedad por este medio!</h2>
+<!-- Contenido -->
+<section class="container mx-auto my-10">
+    <h1 class="text-3xl font-bold text-gray-900 text-center">Mis Propiedades</h1>
 
-        <div class="overflow-x-auto mb-6">
-            <table class="w-full text-sm text-left text-gray-500 border border-gray-300 rounded-lg shadow-lg">
-                <thead class="text-xs text-gray-700 uppercase bg-green-100">
-                <tr>
-                    <th class="px-6 py-3 border-b">ID</th>
-                    <th class="px-6 py-3 border-b">Nombre</th>
-                    <th class="px-6 py-3 border-b">Correo</th>
-                    <th class="px-6 py-3 border-b">Teléfono</th>
-                    <th class="px-6 py-3 border-b">Propiedades Registradas</th>
-                    <th class="px-6 py-3 border-b text-center">Opciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="propietario : ${propietarios}" class="bg-white border-b hover:bg-gray-100">
-                    <td class="px-6 py-4 font-medium text-gray-900" th:text="${propietario.id}"></td>
-                    <td class="px-6 py-4" th:text="${propietario.nombre}"></td>
-                    <td class="px-6 py-4" th:text="${propietario.email}"></td>
-                    <td class="px-6 py-4" th:text="${propietario.telefono}"></td>
-                    <td class="px-6 py-4" th:text="${propietario.propiedades.size()}"></td>
-                    <td class="px-6 py-4 flex justify-center space-x-2">
-                        <a th:href="@{'/propietarios/editar/' + ${propietario.id}}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Actualizar</a>
-                        <a th:href="@{'/propietarios/eliminar/' + ${propietario.id}}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Eliminar</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <!-- Mensaje si no hay propiedades -->
+    <p th:if="${propiedades == null or propiedades.isEmpty()}" class="text-center text-gray-600 mt-4">
+        No has agregado ninguna propiedad.
+    </p>
 
-        <!-- Botón para añadir una nueva propiedad -->
-        <div class="text-center">
-            <a th:href="@{/propiedades/nuevaPropiedad}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
-                Añadir Nueva Propiedad
-            </a>
-        </div>
-</main>
+    <!-- Tabla de Propiedades -->
+    <!-- Botón para agregar nueva propiedad -->
+    <div class="text-right mb-4">
+        <a th:href="@{/propiedades/nuevaPropiedad}"
+           class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition">
+            + Agregar Nueva Propiedad
+        </a>
+    </div>
 
+    <!-- Tabla de Propiedades -->
+    <!-- Tabla de Propiedades -->
+    <div class="overflow-x-auto mt-6">
+        <table class="min-w-full bg-white shadow-md rounded-lg">
+            <thead class="bg-green-600 text-white">
+            <tr>
+                <th class="py-2 px-4">Tipo</th>
+                <th class="py-2 px-4">Ubicación</th>
+                <th class="py-2 px-4">Tamaño (m²)</th>
+                <th class="py-2 px-4">Precio ($)</th>
+                <th class="py-2 px-4">Estado</th>
+                <th class="py-2 px-4">Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="propiedad : ${propiedades}" class="border-b">
+                <td class="py-2 px-4 text-center" th:text="${propiedad.tipo}"></td>
+                <td class="py-2 px-4 text-center" th:text="${propiedad.ubicacion}"></td>
+                <td class="py-2 px-4 text-center" th:text="${propiedad.tamaño}"></td>
+                <td class="py-2 px-4 text-center text-green-600 font-bold" th:text="'$' + ${propiedad.precio}"></td>
+                <td class="py-2 px-4 text-center" th:text="${propiedad.estado}"></td>
+                <td class="py-2 px-4 text-center">
+                    <a th:href="@{/propiedades/editar/{id}(id=${propiedad.id})}"
+                       class="bg-yellow-500 text-white py-1 px-3 rounded-lg hover:bg-yellow-600 transition">
+                        Editar
+                    </a>
+                    <a th:href="@{/propiedades/eliminar/{id}(id=${propiedad.id})}"
+                       class="bg-red-600 text-white py-1 px-3 rounded-lg hover:bg-red-700 transition ml-2"
+                       onclick="return confirm('¿Estás seguro de eliminar esta propiedad?');">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</section>
 
 <!-- Footer -->
 <footer class="bg-gray-800 text-white text-center py-4 mt-10">
     <p>© 2025 Gestor Inmobiliario. Todos los derechos reservados.</p>
 </footer>
 
+<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
 </body>
 </html>
+
