@@ -25,8 +25,8 @@ public class SeguridadWeb {
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/dashboard", true)
+                        .loginPage("/login") // Página de login
+                        .defaultSuccessUrl("/dashboard", true) // Redirige al dashboard después del login
                         .permitAll()
                 )
                 .logout(logout -> logout
@@ -44,10 +44,11 @@ public class SeguridadWeb {
             Usuario usuario = usuarioRepositorio.findByEmail(email)
                     .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
-            return User.withUsername(usuario.getEmail())
+            return User.withUsername(usuario.getEmail()) // Usa el email como username
                     .password(usuario.getPassword())
                     .roles("USER")
                     .build();
         };
     }
+
 }

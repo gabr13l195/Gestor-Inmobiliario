@@ -19,11 +19,16 @@ public class UsuarioServicio {
     }
 
     public void registrarUsuario(String email, String password) {
+        System.out.println("Registrando usuario: " + email); // Verifica si se ejecuta
+
         Usuario usuario = new Usuario();
         usuario.setEmail(email);
         usuario.setPassword(passwordEncoder.encode(password)); // Encripta la contraseña
+
         usuarioRepositorio.save(usuario);
+        System.out.println("Usuario guardado en la base de datos: " + email);
     }
+
 
     public Optional<Usuario> encontrarPorEmail(String email) {
         return usuarioRepositorio.findByEmail(email);
