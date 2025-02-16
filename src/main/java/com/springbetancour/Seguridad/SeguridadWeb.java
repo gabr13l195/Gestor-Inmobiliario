@@ -47,11 +47,10 @@ public class SeguridadWeb {
             Usuario usuario = usuarioRepositorio.findByEmail(email)
                     .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
-            return User.withUsername(usuario.getEmail()) // Usa el email como username
+            return User.withUsername(usuario.getEmail())
                     .password(usuario.getPassword()) // Usa la contraseña encriptada guardada en la BD
-                    .passwordEncoder(passwordEncoder()::encode) // Asegura que se use BCrypt
                     .roles("USER")
-                    .build();
+                    .build(); // No vuelvas a encriptar aquí
         };
     }
 
