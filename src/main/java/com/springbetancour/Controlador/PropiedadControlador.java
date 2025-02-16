@@ -24,7 +24,7 @@ public class PropiedadControlador {
     // Mostrar la página de ventas
     @GetMapping("/ventas")
     public String mostrarVentas(Model modelo) {
-        modelo.addAttribute("propiedades", propiedadServicio.listarTodas());
+//        modelo.addAttribute("propiedades", propiedadServicio.listarTodas());
         return "screens/ventas";
     }
 
@@ -48,4 +48,5 @@ public class PropiedadControlador {
         propiedadServicio.eliminar(id); // Eliminar la propiedad por ID
         return "redirect:/propiedades"; // Redirigir a la lista de propiedades
     }
+
 }

@@ -16,7 +16,7 @@
         </a>
         <div class="flex space-x-6 mr-4">
             <a th:href="@{/propiedades}" class="hover:text-green-200 font-medium text-lg">Propiedades</a>
-            <a th:href="@{/ventas}" class="hover:text-green-200 font-medium text-lg">Ventas</a>
+            <a th:href="@{/propiedades/ventas}" class="hover:text-green-200 font-medium text-lg">Ventas</a>
             <a th:href="@{/reservas}" class="hover:text-green-200 font-medium text-lg">Reservas</a>
             <a th:href="@{/propietarios}" class="hover:text-green-200 font-medium text-lg">Propietarios</a>
         </div>
@@ -33,7 +33,7 @@
                 Administra inmuebles, propietarios y clientes de manera sencilla y eficiente con nuestra plataforma.
             </p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-                <a th:href="@{/ventas}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300">
+                <a th:href="@{/propiedades/ventas}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300">
                     Ver Propiedades
                     <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -49,12 +49,12 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Comprar Propiedad -->
                 <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12">
-                    <a th:href="@{/ventas}" class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2">
+                    <a th:href="@{/propiedades/ventas}" class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2">
                         Ventas
                     </a>
                     <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">¿Quieres comprar una propiedad?</h2>
                     <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">Encuentra propiedades a tu medida y haz el mejor trato con nosotros.</p>
-                    <a th:href="@{/ventas}" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Más información
+                    <a th:href="@{/propiedades/ventas}" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Más información
                         <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
