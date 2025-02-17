@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PropietarioServicio {
@@ -13,24 +14,21 @@ public class PropietarioServicio {
     @Autowired
     private PropietarioRepositorio propietarioRepositorio;
 
-    // Listar todos los propietarios
     public List<Propietario> listarTodos() {
         return propietarioRepositorio.findAll();
     }
 
-    // Guardar un propietario
     public void guardar(Propietario propietario) {
         propietarioRepositorio.save(propietario);
     }
 
-    // Obtener un propietario por ID
-    public Propietario obtenerPorId(Long id) {
-        return propietarioRepositorio.findById(id).orElse(null);
-    }
-
-    // Eliminar un propietario por ID
     public void eliminar(Long id) {
         propietarioRepositorio.deleteById(id);
+    }
+
+    public Propietario obtenerPorId(Long id) {
+        Optional<Propietario> propietario = propietarioRepositorio.findById(id);
+        return propietario.orElse(null);
     }
 }
 

@@ -16,14 +16,13 @@ public class PropiedadControlador {
     @Autowired
     private PropiedadServicio propiedadServicio;
 
-    // Listar todas las propiedades en la página principal de propiedades
+    // Listar todas las propiedades
     @GetMapping
     public String listarPropiedades(Model modelo) {
         modelo.addAttribute("propiedades", propiedadServicio.listarTodas());
         return "screens/propiedades";
     }
 
-    // Mostrar la página de ventas
     @GetMapping("/ventas")
     public String mostrarVentas(Model modelo) {
         List<Propiedad> propiedades = propiedadServicio.listarTodas();
@@ -34,7 +33,7 @@ public class PropiedadControlador {
     // Mostrar el formulario para agregar una nueva propiedad
     @GetMapping("/nuevaPropiedad")
     public String mostrarFormularioNuevaPropiedad(Model modelo) {
-        modelo.addAttribute("propiedad", new Propiedad()); // Crear un nuevo objeto vacío para el formulario
+        modelo.addAttribute("propiedad", new Propiedad());
         return "screens/nuevaPropiedad";
     }
 
@@ -57,17 +56,18 @@ public class PropiedadControlador {
         }
     }
 
-    // Guardar cambios de una propiedad editada
+    // Guardar los cambios de una propiedad editada
     @PostMapping("/actualizar")
     public String actualizarPropiedad(@ModelAttribute("propiedad") Propiedad propiedad) {
-        propiedadServicio.guardar(propiedad);
+        propiedadServicio.guardar(propiedad); // Guarda los cambios en la base de datos
         return "redirect:/propiedades";
     }
 
-    // Eliminar una propiedad
+    // Eliminar una propiedad por su ID
     @GetMapping("/eliminar/{id}")
     public String eliminarPropiedad(@PathVariable Long id) {
         propiedadServicio.eliminar(id);
         return "redirect:/propiedades";
     }
 }
+

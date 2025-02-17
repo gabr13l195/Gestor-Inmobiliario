@@ -21,17 +21,16 @@ public class PropietarioControlador {
     public String listarPropiedadesDelUsuario(Model modelo) {
         List<Propiedad> propiedades = propiedadServicio.listarTodas(); // TODO: Filtrar por usuario autenticado
         modelo.addAttribute("propiedades", propiedades);
-        modelo.addAttribute("propiedad", new Propiedad()); // Para agregar una nueva propiedad
         return "screens/propietarios";
     }
 
-    // Mostrar formulario para editar una propiedad con sus datos cargados
+    // Mostrar formulario para editar propiedad
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEditar(@PathVariable Long id, Model modelo) {
         Propiedad propiedad = propiedadServicio.obtenerPorId(id);
         if (propiedad != null) {
             modelo.addAttribute("propiedad", propiedad);
-            return "screens/nuevaPropiedad"; // Usa el mismo formulario para editar
+            return "screens/editarPropiedad";
         } else {
             return "redirect:/propietarios";
         }
@@ -51,6 +50,8 @@ public class PropietarioControlador {
         return "redirect:/propietarios";
     }
 }
+
+
 
 
 

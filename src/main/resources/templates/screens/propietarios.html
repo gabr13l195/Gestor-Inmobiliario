@@ -32,16 +32,6 @@
     </p>
 
     <!-- Tabla de Propiedades -->
-    <!-- Botón para agregar nueva propiedad -->
-    <div class="text-right mb-4">
-        <a th:href="@{/propiedades/nuevaPropiedad}"
-           class="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition">
-            + Agregar Nueva Propiedad
-        </a>
-    </div>
-
-    <!-- Tabla de Propiedades -->
-    <!-- Tabla de Propiedades -->
     <div class="overflow-x-auto mt-6">
         <table class="min-w-full bg-white shadow-md rounded-lg">
             <thead class="bg-green-600 text-white">
@@ -62,11 +52,11 @@
                 <td class="py-2 px-4 text-center text-green-600 font-bold" th:text="'$' + ${propiedad.precio}"></td>
                 <td class="py-2 px-4 text-center" th:text="${propiedad.estado}"></td>
                 <td class="py-2 px-4 text-center">
-                    <a th:href="@{/propiedades/editar/{id}(id=${propiedad.id})}"
+                    <a th:href="@{/propietarios/editar/{id}(id=${propiedad.id})}"
                        class="bg-yellow-500 text-white py-1 px-3 rounded-lg hover:bg-yellow-600 transition">
                         Editar
                     </a>
-                    <a th:href="@{/propiedades/eliminar/{id}(id=${propiedad.id})}"
+                    <a th:href="@{/propietarios/eliminar/{id}(id=${propiedad.id})}"
                        class="bg-red-600 text-white py-1 px-3 rounded-lg hover:bg-red-700 transition ml-2"
                        onclick="return confirm('¿Estás seguro de eliminar esta propiedad?');">
                         Eliminar
@@ -76,8 +66,6 @@
             </tbody>
         </table>
     </div>
-
-
 </section>
 
 <!-- Footer -->
@@ -90,4 +78,5 @@
 
 </body>
 </html>
+
 

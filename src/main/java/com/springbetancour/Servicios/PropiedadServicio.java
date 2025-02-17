@@ -4,8 +4,8 @@ import com.springbetancour.Entidad.Propiedad;
 import com.springbetancour.Repositorio.PropiedadRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PropiedadServicio {
@@ -13,25 +13,34 @@ public class PropiedadServicio {
     @Autowired
     private PropiedadRepositorio propiedadRepositorio;
 
-    // Listar todas las propiedades
     public List<Propiedad> listarTodas() {
-        List<Propiedad> propiedades = propiedadRepositorio.findAll();
-        return propiedades.isEmpty() ? null : propiedades;
+        return propiedadRepositorio.findAll();
     }
 
-    // Guardar una propiedad
-    public void guardar(Propiedad propiedad) {
-        propiedadRepositorio.save(propiedad);
-    }
-
-    // Obtener una propiedad por ID
     public Propiedad obtenerPorId(Long id) {
         return propiedadRepositorio.findById(id).orElse(null);
     }
 
-    // Eliminar una propiedad por ID
     public void eliminar(Long id) {
         propiedadRepositorio.deleteById(id);
     }
+
+    public void actualizarPropiedad(Long id, Propiedad nuevaPropiedad) {
+        Optional<Propiedad> propiedadExistente = propiedadRepositorio.findById(id);
+        if (propiedadExistente.isPresent()) {
+            Propiedad propiedad = propiedadExistente.get();
+            propiedad.setTipo(nuevaPropiedad.getTipo());
+            propiedad.setUbicacion(nuevaPropiedad.getUbicacion());
+            propiedad.setTamaño(nuevaPropiedad.getTamaño());
+            propiedad.setPrecio(nuevaPropiedad.getPrecio());
+            propiedad.setEstado(nuevaPropiedad.getEstado());
+            propiedadRepositorio.save(propiedad);
+        }
+    }
+
+    public void guardar(Propiedad propiedad) {
+        propiedadRepositorio.save(propiedad);
+    }
 }
+
 
