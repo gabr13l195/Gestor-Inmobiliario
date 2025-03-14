@@ -31,7 +31,6 @@ public class PropiedadServicio {
             Propiedad propiedad = propiedadExistente.get();
             propiedad.setTipo(nuevaPropiedad.getTipo());
             propiedad.setUbicacion(nuevaPropiedad.getUbicacion());
-            propiedad.setTamaño(nuevaPropiedad.getTamaño());
             propiedad.setPrecio(nuevaPropiedad.getPrecio());
             propiedad.setEstado(nuevaPropiedad.getEstado());
             propiedadRepositorio.save(propiedad);

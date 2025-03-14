@@ -3,9 +3,12 @@ package com.springbetancour.Controlador;
 import com.springbetancour.Entidad.Cliente;
 import com.springbetancour.Servicios.ClienteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/clientes")
@@ -15,10 +18,10 @@ public class ClienteControlador {
     private ClienteServicio clienteServicio;
 
     // Listar todos los clientes
-    @GetMapping
-    public String listarClientes(Model modelo) {
-        modelo.addAttribute("clientes", clienteServicio.listarTodos());
-        return "screens/clientes";
+    @GetMapping("/listar")
+    public ResponseEntity<List<Cliente>> listarClientes() {
+        List<Cliente> clientes = clienteServicio.listarTodos();
+        return ResponseEntity.ok(clientes);
     }
 
     // Mostrar formulario para crear un nuevo cliente
