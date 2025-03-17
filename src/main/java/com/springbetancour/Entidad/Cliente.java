@@ -10,10 +10,11 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nombre;
     private String email;
-    private String telefono;
+    private String nombre;
     private String interes;
+    private String telefono;
+
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Reserva> reservas;

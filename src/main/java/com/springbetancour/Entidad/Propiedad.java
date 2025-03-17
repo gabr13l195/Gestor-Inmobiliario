@@ -10,11 +10,14 @@ public class Propiedad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String estado;
+    private Double precio;
+    private Double tamano;
     private String tipo;
     private String ubicacion;
-    private Double tamano; // Asegúrate de que sea Double
-    private Double precio;
-    private String estado;
+    // Asegúrate de que sea Double
+
+
 
     @ManyToOne
     @JoinColumn(name = "propietario_id")
