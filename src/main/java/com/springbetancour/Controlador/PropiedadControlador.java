@@ -5,86 +5,54 @@ import com.springbetancour.Entidad.Propietario;
 import com.springbetancour.Servicios.PropiedadServicio;
 import com.springbetancour.Servicios.PropietarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/propiedades")
+@RestController
+@RequestMapping("/api/propiedades")
+@CrossOrigin(origins = "*")
 public class PropiedadControlador {
 
     @Autowired
     private PropiedadServicio propiedadServicio;
 
-    @Autowired
-    private PropietarioServicio propietarioServicio;
-
-    // Listar todas las propiedades
+    // Obtener todas las propiedades
     @GetMapping
-    public String listarPropiedades(Model modelo) {
-        modelo.addAttribute("propiedades", propiedadServicio.listarTodas());
-        return "screens/propiedades";
+    public ResponseEntity<List<Propiedad>> listarPropiedades() {
+        return ResponseEntity.ok(propiedadServicio.listarTodas());
     }
 
-    // Mostrar propiedades en la sección de ventas
-    @GetMapping("/ventas")
-    public String mostrarVentas(Model modelo) {
-        List<Propiedad> propiedades = propiedadServicio.listarTodas();
-        modelo.addAttribute("propiedades", propiedades);
-        return "screens/ventas";
+    // Obtener una propiedad por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Propiedad> obtenerPropiedad(@PathVariable Long id) {
+        return ResponseEntity.ok(propiedadServicio.obtenerPorId(id));
     }
 
-    // Mostrar el formulario para agregar una nueva propiedad
-    @GetMapping("/nuevaPropiedad")
-    public String mostrarFormularioNuevaPropiedad(Model modelo) {
-        modelo.addAttribute("propiedad", new Propiedad());
-        modelo.addAttribute("propietarios", propietarioServicio.listarTodos()); // Listamos propietarios disponibles
-        return "screens/nuevaPropiedad";
+    // Crear una nueva propiedad
+    @PostMapping
+    public ResponseEntity<Propiedad> crearPropiedad(@RequestBody Propiedad propiedad) {
+        Propiedad nuevaPropiedad = propiedadServicio.guardar(propiedad);
+        return ResponseEntity.ok(nuevaPropiedad);
     }
 
-    // Guardar una nueva propiedad con relación a un propietario
-    @PostMapping("/guardar")
-    public String guardarPropiedad(@ModelAttribute("propiedad") Propiedad propiedad, @RequestParam Long propietarioId) {
-        Propietario propietario = propietarioServicio.obtenerPorId(propietarioId);
-        if (propietario != null) {
-            propiedad.setPropietario(propietario);
-            propiedadServicio.guardar(propiedad);
-        }
-        return "redirect:/propietarios"; // Redirigir a la lista de propiedades de los propietarios
+    // Actualizar una propiedad
+    @PutMapping("/{id}")
+    public ResponseEntity<Propiedad> actualizarPropiedad(@PathVariable Long id, @RequestBody Propiedad propiedad) {
+        Propiedad actualizada = propiedadServicio.actualizar(id, propiedad);
+        return ResponseEntity.ok(actualizada);
     }
 
-    // Mostrar el formulario para editar una propiedad existente
-    @GetMapping("/editar/{id}")
-    public String mostrarFormularioEditar(@PathVariable Long id, Model modelo) {
-        Propiedad propiedad = propiedadServicio.obtenerPorId(id);
-        if (propiedad != null) {
-            modelo.addAttribute("propiedad", propiedad);
-            modelo.addAttribute("propietarios", propietarioServicio.listarTodos()); // Listamos propietarios disponibles
-            return "screens/nuevaPropiedad"; // Usa el mismo formulario para editar
-        } else {
-            return "redirect:/propiedades";
-        }
-    }
-
-    // Guardar los cambios de una propiedad editada
-    @PostMapping("/actualizar")
-    public String actualizarPropiedad(@ModelAttribute("propiedad") Propiedad propiedad, @RequestParam Long propietarioId) {
-        Propietario propietario = propietarioServicio.obtenerPorId(propietarioId);
-        if (propietario != null) {
-            propiedad.setPropietario(propietario);
-            propiedadServicio.guardar(propiedad);
-        }
-        return "redirect:/propietarios";
-    }
-
-    // Eliminar una propiedad por su ID
-    @GetMapping("/eliminar/{id}")
-    public String eliminarPropiedad(@PathVariable Long id) {
+    // Eliminar una propiedad
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarPropiedad(@PathVariable Long id) {
         propiedadServicio.eliminar(id);
-        return "redirect:/propiedades";
+        return ResponseEntity.noContent().build();
     }
 }
+
 
 

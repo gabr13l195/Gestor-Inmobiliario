@@ -19,10 +19,9 @@ public class ClienteServicio {
     }
 
     // Guardar un cliente
-    public void guardar(Cliente cliente) {
-        clienteRepositorio.save(cliente);
+    public Cliente guardar(Cliente cliente) {
+        return clienteRepositorio.save(cliente);
     }
-
     // Obtener un cliente por ID
     public Cliente obtenerPorId(Long id) {
         return clienteRepositorio.findById(id).orElse(null);
@@ -32,4 +31,17 @@ public class ClienteServicio {
     public void eliminar(Long id) {
         clienteRepositorio.deleteById(id);
     }
+
+    public Cliente actualizar(Long id, Cliente cliente) {
+        Cliente existente = clienteRepositorio.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+
+        // Actualizar los campos
+        existente.setNombre(cliente.getNombre());
+        existente.setEmail(cliente.getEmail());
+        existente.setTelefono(cliente.getTelefono());
+
+        return clienteRepositorio.save(existente);
+    }
+
 }

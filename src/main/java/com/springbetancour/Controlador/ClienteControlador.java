@@ -10,40 +10,41 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/clientes")
+@RestController
+@RequestMapping("/api/clientes")
+@CrossOrigin(origins = "*") // Permite solicitudes desde cualquier frontend
 public class ClienteControlador {
 
     @Autowired
     private ClienteServicio clienteServicio;
 
-    // Listar todos los clientes
-    @GetMapping("/listar")
+    // Obtener todos los clientes
+    @GetMapping
     public ResponseEntity<List<Cliente>> listarClientes() {
-        List<Cliente> clientes = clienteServicio.listarTodos();
-        return ResponseEntity.ok(clientes);
+        return ResponseEntity.ok(clienteServicio.listarTodos());
     }
 
-    // Mostrar formulario para crear un nuevo cliente
-    @GetMapping("/nuevo")
-    public String mostrarFormularioNuevoCliente(Model modelo) {
-        modelo.addAttribute("cliente", new Cliente());
-        return "screens/formularioCliente";
-    }
-
-    // Guardar un nuevo cliente
+    // Crear un nuevo cliente
     @PostMapping
-    public String guardarCliente(@ModelAttribute("cliente") Cliente cliente) {
-        clienteServicio.guardar(cliente);
-        return "redirect:/clientes";
+    public ResponseEntity<Cliente> crearCliente(@RequestBody Cliente cliente) {
+        Cliente nuevoCliente = clienteServicio.guardar(cliente);
+        return ResponseEntity.ok(nuevoCliente);
+    }
+
+    // Actualizar un cliente
+    @PutMapping("/{id}")
+    public ResponseEntity<Cliente> actualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+        Cliente actualizado = clienteServicio.actualizar(id, cliente);
+        return ResponseEntity.ok(actualizado);
     }
 
     // Eliminar un cliente
-    @GetMapping("/eliminar/{id}")
-    public String eliminarCliente(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarCliente(@PathVariable Long id) {
         clienteServicio.eliminar(id);
-        return "redirect:/clientes";
+        return ResponseEntity.noContent().build();
     }
+
 }
 
 

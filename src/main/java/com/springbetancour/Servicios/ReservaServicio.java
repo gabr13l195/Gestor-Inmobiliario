@@ -18,17 +18,32 @@ public class ReservaServicio {
         return reservaRepositorio.findAll();
     }
 
-    // Guardar una reserva
-    public void guardar(Reserva reserva) {
-        reservaRepositorio.save(reserva);
-    }
-
     // Obtener una reserva por ID
     public Reserva obtenerPorId(Long id) {
-        return reservaRepositorio.findById(id).orElse(null);
+        return reservaRepositorio.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reserva no encontrada con ID: " + id));
     }
 
-    // Eliminar una reserva por ID
+    // Guardar una nueva reserva
+    public Reserva guardar(Reserva reserva) {
+        return reservaRepositorio.save(reserva);
+    }
+
+    // Actualizar una reserva
+    public Reserva actualizar(Long id, Reserva reserva) {
+        Reserva existente = reservaRepositorio.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reserva no encontrada con ID: " + id));
+
+        // Actualizar los campos necesarios
+        existente.setCliente(reserva.getCliente());
+        existente.setPropiedad(reserva.getPropiedad());
+        existente.setFechaVisita(reserva.getFechaVisita());
+        existente.setEstado(reserva.getEstado());
+
+        return reservaRepositorio.save(existente);
+    }
+
+    // Eliminar una reserva
     public void eliminar(Long id) {
         reservaRepositorio.deleteById(id);
     }

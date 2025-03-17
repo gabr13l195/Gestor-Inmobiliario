@@ -3,42 +3,46 @@ package com.springbetancour.Controlador;
 import com.springbetancour.Entidad.Reserva;
 import com.springbetancour.Servicios.ReservaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/reservas")
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/reservas")
+@CrossOrigin(origins = "*")
 public class ReservaControlador {
 
     @Autowired
     private ReservaServicio reservaServicio;
 
-    // Listar todas las reservas
+    // Obtener todas las reservas
     @GetMapping
-    public String listarReservas(Model modelo) {
-        modelo.addAttribute("reservas", reservaServicio.listarTodas());
-        return "screens/reservas";
+    public ResponseEntity<List<Reserva>> listarReservas() {
+        return ResponseEntity.ok(reservaServicio.listarTodas());
     }
 
-    // Mostrar formulario para crear una nueva reserva
-    @GetMapping("/nueva")
-    public String mostrarFormularioNuevaReserva(Model modelo) {
-        modelo.addAttribute("reserva", new Reserva());
-        return "screens/formularioReserva";
-    }
-
-    // Guardar una nueva reserva
+    // Crear una nueva reserva
     @PostMapping
-    public String guardarReserva(@ModelAttribute("reserva") Reserva reserva) {
-        reservaServicio.guardar(reserva);
-        return "redirect:/reservas";
+    public ResponseEntity<Reserva> crearReserva(@RequestBody Reserva reserva) {
+        Reserva nuevaReserva = reservaServicio.guardar(reserva);
+        return ResponseEntity.ok(nuevaReserva);
+    }
+
+    // Actualizar una reserva
+    @PutMapping("/{id}")
+    public ResponseEntity<Reserva> actualizarReserva(@PathVariable Long id, @RequestBody Reserva reserva) {
+        Reserva actualizada = reservaServicio.actualizar(id, reserva);
+        return ResponseEntity.ok(actualizada);
     }
 
     // Eliminar una reserva
-    @GetMapping("/eliminar/{id}")
-    public String eliminarReserva(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarReserva(@PathVariable Long id) {
         reservaServicio.eliminar(id);
-        return "redirect:/reservas";
+        return ResponseEntity.noContent().build();
     }
 }
+
